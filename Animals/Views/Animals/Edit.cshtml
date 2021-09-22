@@ -1,0 +1,64 @@
+﻿@model Animals.Models.Animal
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Animal</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AnimalID" />
+            <div class="form-group">
+                <label asp-for="AnimalName" class="control-label"></label>
+                <input asp-for="AnimalName" class="form-control" />
+                <span asp-validation-for="AnimalName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Habitat" class="control-label"></label>
+                <input asp-for="Habitat" class="form-control" />
+                <span asp-validation-for="Habitat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AgeOfAnimal" class="control-label"></label>
+                <input asp-for="AgeOfAnimal" class="form-control" />
+                <span asp-validation-for="AgeOfAnimal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateRegistered" class="control-label"></label>
+                <input asp-for="DateRegistered" class="form-control" />
+                <span asp-validation-for="DateRegistered" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FeedingTime" class="control-label"></label>
+                <input asp-for="FeedingTime" class="form-control" />
+                <span asp-validation-for="FeedingTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalCheckup" class="control-label"></label>
+                <input asp-for="AnimalCheckup" class="form-control" />
+                <span asp-validation-for="AnimalCheckup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
