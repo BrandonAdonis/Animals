@@ -36,17 +36,20 @@ namespace Animals.Models
 
 
         [Required]
+        [DataType(DataType.Date)]
         [Display(Name = "Date Registered")]
         public DateTime DateRegistered { get; set; }
 
 
         [Required]
         [Display(Name = "Feeding Time")]
+        [DataType(DataType.Time)]
         public DateTime FeedingTime { get; set; }
 
 
         [Required]
         [Display(Name = "Animal Checkup")]
+        [DataType(DataType.Time)]
         public DateTime AnimalCheckup { get; set; }
 
         public ICollection<StaffMember> StaffMember { get; set; }

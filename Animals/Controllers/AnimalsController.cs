@@ -19,10 +19,17 @@ namespace Animals.Controllers
             _context = context;
         }
 
-        // GET: Animals
-        public async Task<IActionResult> Index()
+        // GET: Animal
+        public async Task<IActionResult> Index(string searchTerm)
         {
-            return View(await _context.Animal.ToListAsync());
+            var animals = from s in _context.Animal
+                          select s;
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                animals = animals.Where(s => s.AnimalName.Contains(searchTerm));
+            }
+            return View(await animals.ToListAsync());
         }
 
         // GET: Animals/Details/5

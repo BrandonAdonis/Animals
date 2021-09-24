@@ -20,6 +20,7 @@ namespace Animals.Models
         [StringLength(50)]
         public string LastName { get; set; }
 
+        [Required]
         [Display(Name = "Age")]
         public int Age { get; set; }
 
