@@ -1,14 +1,81 @@
 ﻿@model IEnumerable<Animals.Models.Food>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
 
 @{
     ViewData["Title"] = "Index";
 }
 
+<style>
+
+    /* This is the Table colour Css*/
+    table {
+        background-color: #e68317;
+    }
+
+    /* This is the search button Css*/
+    .Search {
+        box-sizing: border-box;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: #ffa400;
+        border: 2px solid #e74c3c;
+        border-radius: 0.6em;
+        color: #000000;
+        cursor: pointer;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-item-align: center;
+        align-self: center;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        margin: 20px;
+        padding: 1.2em 2.8em;
+        text-decoration: none;
+        text-align: center;
+        text-transform: uppercase;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+    }
+
+        .Search:hover, .btn:focus {
+            color: #fff;
+            outline: 0;
+        }
+
+
+
+        .Search:hover {
+            box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+            color: white;
+            background-color: orangered;
+        }
+</style>
+
+
 <h1>Food List</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
+
+<form asp-controller="Foods" asp-action="Index">
+    <p>
+        Foods <input type="text" name="searchTerm" />
+        @*<input type="submit" value="Search"/>*@
+        <button type="submit" class="btn Search">Search</button>
+    </p>
+</form>
+
+
 <table class="table">
     <thead>
         <tr>
@@ -31,29 +98,39 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FoodName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FoodType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nutrients)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AllergiesIngredients)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpiryDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.FoodID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.FoodID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.FoodID">Delete</a>
-            </td>
-        </tr>
-}
+
+        @if (Model.Count() == 0)
+        {
+            <tr class="alert-danger">
+                <td colspan="6">No Records found</td>
+            </tr>
+        }
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FoodName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FoodType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nutrients)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AllergiesIngredients)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpiryDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.FoodID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.FoodID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.FoodID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

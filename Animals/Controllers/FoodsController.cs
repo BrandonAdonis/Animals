@@ -20,9 +20,16 @@ namespace Animals.Controllers
         }
 
         // GET: Foods
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchTerm)
         {
-            return View(await _context.Food.ToListAsync());
+            var foods = from s in _context.Food
+                          select s;
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                foods = foods.Where(s => s.FoodName.Contains(searchTerm));
+            }
+            return View(await foods.ToListAsync());
         }
 
         // GET: Foods/Details/5

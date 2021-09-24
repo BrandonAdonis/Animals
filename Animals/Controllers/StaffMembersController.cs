@@ -19,10 +19,18 @@ namespace Animals.Controllers
             _context = context;
         }
 
+
         // GET: StaffMembers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchTerm)
         {
-            return View(await _context.StaffMember.ToListAsync());
+            var staffmembers = from s in _context.StaffMember
+                          select s;
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                staffmembers = staffmembers.Where(s => s.FirstName.Contains(searchTerm));
+            }
+            return View(await staffmembers.ToListAsync());
         }
 
         // GET: StaffMembers/Details/5
