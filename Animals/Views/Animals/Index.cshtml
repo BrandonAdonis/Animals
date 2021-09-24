@@ -7,37 +7,53 @@
 }
 
 <style>
-        .btnSearch {
-            box-sizing: border-box;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            background-color: transparent;
-            border: 2px solid #e74c3c;
-            border-radius: 0.6em;
-            color: #e74c3c;
-            cursor: pointer;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex;
-            -ms-flex-item-align: center;
-            align-self: center;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1;
-            margin: 20px;
-            padding: 1.2em 2.8em;
-            text-decoration: none;
-            text-align: center;
-            text-transform: uppercase;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
+
+    /* This is the Table colour Css*/
+    table {
+        background-color: #e68317;
+    }
+   
+    /* This is the search button Css*/
+    .Search {
+        box-sizing: border-box;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: #ffa400;
+        border: 2px solid #e74c3c;
+        border-radius: 0.6em;
+        color: #000000;
+        cursor: pointer;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-item-align: center;
+        align-self: center;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        margin: 20px;
+        padding: 1.2em 2.8em;
+        text-decoration: none;
+        text-align: center;
+        text-transform: uppercase;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+    }
+
+        .Search:hover, .btn:focus {
+            color: #fff;
+            outline: 0;
         }
 
-            .btnSearch:hover, .btn:focus {
-                color: #fff;
-                outline: 0;
-            }
+
+
+        .Search:hover {
+            box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+            color: white;
+            background-color: orangered;
+        }
+
 </style>
 <h1>Animal List</h1>
 
@@ -53,7 +69,7 @@
     <p>
         Animal <input type="text" name="searchTerm" />
         @*<input type="submit" value="Search"/>*@
-        <button type="submit" class="btnSearch">Search</button>
+        <button type="submit" class="btn Search">Search</button>
     </p>
 </form>
 
